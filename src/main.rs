@@ -83,7 +83,7 @@ fn main() {
         }
 
         // check for freeswitch status
-        let is_err = is_freeswitch_working(&url);
+        let is_err = !is_freeswitch_working(&url);
 
         if is_err {
             println!("freeswitch is in invalid state");
