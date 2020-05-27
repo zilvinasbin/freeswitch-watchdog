@@ -43,7 +43,7 @@ fn is_freeswitch_working (url : &str) -> bool {
 fn restart_freeswitch () {
     loop {
         println!("restarting services…");
-        let status = Command::new("systemctl").args(&["restart", "freeswitch.service", "bbb-fsesl-akka.service"]).status();
+        let status = Command::new("systemctl").args(&["restart", "freeswitch.service"]).status(); // "bbb-fsesl-akka.service"
         let mut restarted = false;
         if status.is_ok() {
             if let Ok(ref status) = status {
