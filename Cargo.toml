@@ -1,0 +1,19 @@
+[package]
+name = "freeswitch-watchdog"
+version = "0.1.0"
+authors = ["Johannes Barthel <johannes.barthel@student.kit.edu>"]
+edition = "2018"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+reqwest = { version = "0.10", features = ["blocking"] }
+anyhow = "1.0.31"
+
+[package.metadata.deb]
+depends = "$auto, systemd"
+section = "httpd"
+priority = "optional"
+assets = [
+    ["freeswitch-watchdog.service", "/lib/systemd/system/", "644"],
+    ["target/release/freeswitch-watchdog", "usr/bin/", "755"]
+]
