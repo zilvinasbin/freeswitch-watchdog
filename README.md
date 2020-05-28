@@ -57,3 +57,7 @@ cargo deb
 ```
 
 The package will end up in the `target/debian` directory.
+
+## licensing
+
+This software is © by Computerwerk Darmstadt e.V. and is available under the MIT License or the Apache License 2.0. Both licenses are included in this repository.
