@@ -7,6 +7,8 @@ Yes, this is an awful hack, but it's all we have for now. Users will be thrown o
 
 Get the debian package (either from this directory or by building from source using the instructions below).
 
+Make sure that `hostname -f` outputs the server's correct FQDN on which BigBlueButtton is reachable via HTTPS.
+
 Go to the directory where the package is:
 ```bash
 dpkg -i ./freeswitch-watchdog_0.1.3_amd64.deb
