@@ -71,9 +71,9 @@ fn main() {
     let hostname = hostname.trim();
     let url = format!("https://{}/ws", hostname);
 
-    // println!("waiting for 10 minutes before beginning checks");
-    // sleep_secs(10 * 60);
-    // println!("now starting to periodically poll freeswitch");
+    println!("waiting for 10 minutes before beginning checks");
+    sleep_secs(10 * 60);
+    println!("now starting to periodically poll freeswitch");
 
     loop {
 
