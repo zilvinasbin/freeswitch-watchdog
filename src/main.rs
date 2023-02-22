@@ -65,6 +65,32 @@ fn restart_freeswitch () {
     }
 }
 
+fn restart_internal () {
+    loop {
+        println!("restarting services…");
+        // fs_cli -x 'sofia profile internal restart reloadxml'
+        let status = Command::new("fs_cli").args(&["-x", "sofia profile internal restart reloadxml"]).status();
+        let mut restarted = false;
+        if status.is_ok() {
+            if let Ok(ref status) = status {
+                if status.success() {
+                    restarted = true;
+                }
+            }
+        }
+
+        if restarted {
+            println!("restart complete, waiting 10 minutes");
+            sleep_secs(10 * 60);
+            return;
+        } else {
+            println!("error restarting services:\n {:?}", status);
+            println!("trying again in 30s");
+            sleep_secs(30);
+        }
+    }
+}
+
 fn main() {
     let hostname = Command::new("hostname").arg("-f").output().expect("could not get FQDN");
     let hostname = String::from_utf8(hostname.stdout).expect("hostname is not valid utf-8");
@@ -87,7 +113,7 @@ fn main() {
 
         if is_err {
             println!("freeswitch is in invalid state");
-            restart_freeswitch();
+            restart_internal();
         } else {
             // everything fine, poll again in 30s
             sleep_secs(30);
