@@ -113,7 +113,7 @@ fn main() {
 
         if is_err {
             println!("freeswitch is in invalid state");
-            restart_internal();
+            restart_freeswitch();
         } else {
             // everything fine, poll again in 30s
             sleep_secs(30);
